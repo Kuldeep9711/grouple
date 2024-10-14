@@ -6,6 +6,20 @@ html {
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
 }
+/* add utilities for border or background or forground */
+
+@layer utilities {
+  .border-border {
+    border-color: black /* Replace with your desired color */
+  }
+  .bg-background {
+    background-color:  black/* Replace with your desired color */
+  }
+  .text-foreground {
+    color:  white/* Replace with your desired color */
+  }
+}
+
 
 @layer base {
   :root {

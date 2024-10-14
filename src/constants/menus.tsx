@@ -1,5 +1,6 @@
 import { CreditCard, Explore, Home } from "@/icons"
 
+
 export type MenuProps = {
     id: number
     label: string
