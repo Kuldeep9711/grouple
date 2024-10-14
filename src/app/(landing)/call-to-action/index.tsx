@@ -31,7 +31,7 @@ className="rounded-xl bg-transparent text-base"
     watch Demo
 </Button>
 <Link href="/sign-in">
-<Button className="rounded-xl text-base flex gap-2">
+<Button className="rounded-xl text-base flex gap-2 w-full">
     <BadgePlus /> Get Started
 </Button>
 </Link>
