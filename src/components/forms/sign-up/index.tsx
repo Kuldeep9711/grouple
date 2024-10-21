@@ -1,21 +1,55 @@
+"use client"
+import { FormGenerator } from "@/components/global/form-generator"
+import { GROUPLE_CONSTANT } from "@/constants"
+import { useAuthSignUp } from "@/hooks/authentication"
+import dynamic from "next/dynamic"
+
 
 
 type Props = {}
 
-const SignUpSchema = (props: Props) => {
-    const {
-        register,
-        errors,
-        verifying,
-        creating,
-        onGenerateCode,
-        OnInitiateUserRegistration,
-        code,
-        setCode,
-        getValues,
-    } = useAuthSignUp()
+const OtpInput = dynamic(
+    () => 
+        import("@/components/global/otp-input").then(
+        (component) => component.default,
+    ),
+    { ssr: false },
+)
 
-  return <div>SignUpSchema</div>
+const SignUpForm = (props: Props) => {
+const {
+    register,
+    errors,
+    verifying,
+    creating,
+    onGenerateCode,
+    onInitiateUserRegistration,
+    code,
+    setCode,
+    getValues,
+} = useAuthSignUp()
+
+  return (
+    <form
+    onSubmit={onInitiateUserRegistration}
+    className="flex flex-col gap-3 mt-10"
+    >
+        {verifying ? (
+            <div className="flex justify-center mb-5">
+                <OtpInput otp={code} setOtp={setCode} />
+            </div>
+        ) : (
+            GROUPLE_CONSTANT.signUpForm.map((field) => (
+                <FormGenerator
+                {...field}
+                key={field.id}
+                register={register}
+                errors={errors}
+                />
+            ))
+        )}
+    </form>
+  ) 
 }
 
-export default SignUpSchema
+export default SignUpForm
